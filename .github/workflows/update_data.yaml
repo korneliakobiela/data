@@ -1,0 +1,25 @@
+name: Data-Update
+
+on: 
+  schedule:
+  - cron: "25 06 * * *"
+
+jobs:
+  update-data:
+    name: Update data from remote
+    environment: secrests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: pull request
+        uses: gorillio/github-action-sync@master
+        with:
+          upstream: opencovid19-fr/data
+          upstream_branch: master
+          branch: master
+          pr_labels: upstream
+        env: 
+          GITHUB_TOKEN: ${secrets.GH_PAT}
+          GITBOT_EMAIL: k.kobiela@samsung.com
+          DRY_RUN: false  
