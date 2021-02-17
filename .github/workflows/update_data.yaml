@@ -15,7 +15,10 @@ jobs:
       - name: Update remote data
         run: git remote add upstream https://github.com/opencovid19-fr/data 
           git pull upstream master
-          git checkout -b data
+      - name: new Branch
+        uses: actions/checkout@v2
+        with:
+         ref: data
       - name: Setup python
         uses: actions/setup-python@v2
         with:
