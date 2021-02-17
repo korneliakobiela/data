@@ -13,7 +13,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Update remote data
-        run: git remote add upstream https://github.com/opencovid19-fr/data 
+        run: |
+          git remote add upstream https://github.com/opencovid19-fr/data 
           git pull upstream master
       - name: new Branch
         uses: actions/checkout@v2
