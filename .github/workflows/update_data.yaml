@@ -34,20 +34,7 @@ jobs:
       - name: Run script
         run: python filter_csv.py
           python filter_csv_consolidate.py
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
-        with:
-            token: ${{ secrets.GH_PAT }}
-            commit-message: Update DATA (auto)
-            title: Update DATA (auto)
-#       - name: pull request
-#         uses: gorillio/github-action-sync@master
-#         with:
-#           upstream: opencovid19-fr/data
-#           upstream_branch: master
-#           branch: master
-#           pr_labels: upstream
-#         env: 
-#           GITHUB_TOKEN: ${secrets.GH_PAT}
-#           GITBOT_EMAIL: k.kobiela@samsung.com
-#           DRY_RUN: false  
+      - name: Commit and push
+        run: |
+          git commit -am "Update data (auto)"
+          git push origin data
