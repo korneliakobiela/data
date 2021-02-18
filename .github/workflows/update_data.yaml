@@ -22,10 +22,6 @@ jobs:
           git fetch upstream
           git branch
           git merge upstream/master
-      - name: new Branch
-        uses: actions/checkout@v2
-        with:
-         ref: data
       - name: Setup python
         uses: actions/setup-python@v2
         with:
@@ -38,11 +34,4 @@ jobs:
       - name: Commit and push
         run: |
           git commit -am "Update data (auto)"
-          git push origin data
-      - name: Merge to master
-        uses: bambamboole/gha-upmerge@master
-        with:
-          from_branch: data
-          to_branch: master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          git push origin master
