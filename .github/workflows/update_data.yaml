@@ -7,7 +7,6 @@ on:
 jobs:
   update-data:
     name: Update data from remote
-    environment: secrests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -17,7 +16,9 @@ jobs:
           fetch-depth: 0
       - name: Update remote data
         run: |
-          git remote add upstream https://github.com/opencovid19-fr/data 
+          git config --global user.name ${{github.actor}}
+          git config --global user.email ${{github.actor}}@users.noreply.github.com
+          git remote add upstream https://github.com/opencovid19-fr/data
           git fetch upstream
           git branch
           git merge upstream/master
