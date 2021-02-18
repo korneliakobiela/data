@@ -32,9 +32,17 @@ jobs:
           python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
           architecture: 'x64'
       - name: Run script
-        run: python filter_csv.py
+        run: |
+          python filter_csv.py
           python filter_csv_consolidate.py
       - name: Commit and push
         run: |
           git commit -am "Update data (auto)"
           git push origin data
+      - name: Merge to master
+        uses: bambamboole/gha-upmerge@master
+        with:
+          from_branch: data
+          to_branch: master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
